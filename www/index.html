@@ -47,9 +47,7 @@
         <h1>Medicine List</h1>
       </div>
       <div data-role="content" id="content">
-		<ul id="listview" data-role="listview">
-        	
-        </ul>
+
 	  </div>
     </div>
     <script type="text/javascript" src="cordova.js"></script>
@@ -71,10 +69,13 @@
 		$().ready(function(e) {
 			$.getJSON(url, function( data ) {
 			  var items = [];
+			  alert("Get Data From Medicine " + Object.keys(data).length);
 			  $.each( data, function( key, val ) {
 				
-				if ( val != undefined && val['name'] != undefined)
+				if ( val != undefined && val['name'] != undefined){
 					items.push( "<li><img src='http://medicine.psu.ac.th/20181004/" + val['icon'] + "' class='icon' /> " + val['name'] + "</li>" );
+					
+				}
 			  });
 			 
 			  $( "<ul/>", {
