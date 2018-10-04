@@ -68,20 +68,23 @@
 				});
 			});
         });*/
-		$.getJSON(url, function( data ) {
-		  var items = [];
-		  $.each( data, function( key, val ) {
-			
-			if ( val != undefined && val['name'] != undefined)
-				items.push( "<li><img src='http://medicine.psu.ac.th/20181004/" + val['icon'] + "' class='icon' /> " + val['name'] + "</li>" );
-		  });
-		 
-		  $( "<ul/>", {
-			"class": "my-new-list",
-			"data-role":"listview", 
-			html: items.join( "" )
-		  }).appendTo( "#content" );
-		});
+		$().ready(function(e) {
+			$.getJSON(url, function( data ) {
+			  var items = [];
+			  $.each( data, function( key, val ) {
+				
+				if ( val != undefined && val['name'] != undefined)
+					items.push( "<li><img src='http://medicine.psu.ac.th/20181004/" + val['icon'] + "' class='icon' /> " + val['name'] + "</li>" );
+			  });
+			 
+			  $( "<ul/>", {
+				"class": "my-new-list",
+				"data-role":"listview", 
+				html: items.join( "" )
+			  }).appendTo( "#content" );
+			});
+        });
+
     </script>
     
 </body>
