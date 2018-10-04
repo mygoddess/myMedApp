@@ -37,24 +37,70 @@
     * Create your own at http://cspisawesome.com
     -->
     <!-- <meta http-equiv="Content-Security-Policy" content="default-src 'self' data: gap: 'unsafe-inline' https://ssl.gstatic.com; style-src 'self' 'unsafe-inline'; media-src *" /> -->
-
+	<script type="text/javascript">
+		
+	</script>
     <link rel="stylesheet" type="text/css" href="css/index.css" />
-    <title>Hello World</title>
+    <link href="js/jquery-mobile1.4/jquery.mobile.theme-1.4.5.min.css" rel="stylesheet" type="text/css">
+    <link href="js/jquery-mobile1.4/jquery.mobile.structure-1.4.5.min.css" rel="stylesheet" type="text/css">
+    
+    <title>Medicine ....</title>
+    <style type="text/css">
+		.icon {
+			width:60px;	
+		}
+		ul {
+		  list-style: none;
+		}
+		li {
+			border: solid 1px white;
+		}
+	</style>
 </head>
 
 <body>
-    <div class="app">
-        <h1>PhoneGap</h1>
-        <div id="deviceready" class="blink">
-            <p class="event listening">Connecting to Device</p>
-            <p class="event received">Device is Ready</p>
-        </div>
+    <div id="page" data-role="page" data-theme="b">
+      <div data-role="header" data-theme="b">
+        <h1>Medicine List</h1>
+      </div>
+      <div data-role="content" id="content">
+		<ul id="listview" data-role="listview">
+        	
+        </ul>
+	  </div>
     </div>
     <script type="text/javascript" src="cordova.js"></script>
     <script type="text/javascript" src="js/index.js"></script>
+
+<script src="js/jquery-mobile1.4/jquery-1.11.1.min.js" type="text/javascript"></script>
+<script src="js/jquery-mobile1.4/jquery.mobile-1.4.5.min.js" type="text/javascript"></script>
     <script type="text/javascript">
         app.initialize();
+		var url = "http://medicine.psu.ac.th/20181004/api.php";		
+		/*$().ready(function(e) {
+            $.getJSON(url, function(result){
+				var listtext = "";
+        		$.each(result, function(i, field){
+            		listtext .= "<li>" + name + icon + "</li>";
+				});
+			});
+        });*/
+		$.getJSON(url, function( data ) {
+		  var items = [];
+		  $.each( data, function( key, val ) {
+			
+			if ( val != undefined && val['name'] != undefined)
+				items.push( "<li><img src='http://medicine.psu.ac.th/20181004/" + val['icon'] + "' class='icon' /> " + val['name'] + "</li>" );
+		  });
+		 
+		  $( "<ul/>", {
+			"class": "my-new-list",
+			"data-role":"listview", 
+			html: items.join( "" )
+		  }).appendTo( "#content" );
+		});
     </script>
+    
 </body>
 
 </html>
