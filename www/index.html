@@ -47,7 +47,8 @@
         <h1>Medicine List</h1>
       </div>
       <div data-role="content" id="content">
-      <button onClick="startFetch()">Fetch...</button>
+			<button onClick="startFetch()">Fetch...</button>
+			<button onClick="startIntraFetch()">Intra...</button>
 		<div id="status"></div>
 	  </div>
     </div>
@@ -67,7 +68,27 @@
 				});
 			});
         });*/
-		
+				
+		function startIntraFetch(){
+			$("#status").html("Start Fetch Data");
+			$.getJSON("http://intra.coe.psu.ac.th/json.php", function( data ) {
+			  var items = [];
+			  alert("Get Data From Medicine " + Object.keys(data).length);
+			  $.each( data, function( key, val ) {
+				
+				if ( val != undefined && val['name'] != undefined){
+					items.push( "<li><img src='http://medicine.psu.ac.th/20181004/" + val['icon'] + "' class='icon' /> " + val['name'] + "</li>" );
+					
+				}
+			  });
+			 
+			  $( "<ul/>", {
+				"class": "my-new-list",
+				"data-role":"listview", 
+				html: items.join( "" )
+			  }).appendTo( "#content" );
+			});
+		}
 		function startFetch(){
 			$("#status").html("Start Fetch Data");
 			$.getJSON(url, function( data ) {
