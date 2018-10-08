@@ -94,7 +94,7 @@
 	<gap:plugin name="cordova-plugin-whitelist" source="npm" />
 	<access origin="*" />
 	<allow-intent href="*" />
-	<allow-navigation href="*" /
+	<allow-navigation href="*" />
     <allow-intent href="http://*/*" />
     <allow-intent href="https://*/*" />
     <allow-intent href="tel:*" />
